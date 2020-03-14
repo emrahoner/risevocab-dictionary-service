@@ -1,16 +1,11 @@
 name: $(EmonsProjects.Version)-alpha.$(Rev:r)
 
 variables:
+  - group: EmonsProjects.Common.Configurations
+  - group: VocRise.Dev.Configurations
+  - group: VocRise.DictionaryService.Configurations
   - name: EmonsProjects.Version
     value: 0.0.0
-  - name: EmonsProjects.ProjectName
-    value: RiseVocab
-  - name: EmonsProjects.AppName
-    value: DictionaryService
-  - name: EmonsProjects.ContainerRegistryConnection
-    value: Emon's Projects Container Registry
-  - name: EmonsProjects.GithubConnection
-    value: EmrahOner Github
 
 trigger:
   - master
@@ -18,7 +13,8 @@ trigger:
 pr: none
 
 pool:
-  name: Hosted Ubuntu 1604
+  name: Azure Devops Pipeline
+  vmImage: ubuntu-latest
 
 steps:
 - task: Docker@2
