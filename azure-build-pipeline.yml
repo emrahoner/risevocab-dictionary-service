@@ -13,7 +13,7 @@ trigger:
 pr: none
 
 pool:
-  name: Azure Devops Pipeline
+  name: Azure Pipelines
   vmImage: ubuntu-latest
 
 steps:
