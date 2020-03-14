@@ -7,7 +7,7 @@
     "local_port": 9001
   },
   "scripts": {
-    "build:run:docker": "sh ./build-run-docker.sh ${npm_package_name} ${npm_package_config_local_port} local.dockerfile",
+    "build:run:docker": "sh ./build-run-docker.sh ${npm_package_name} ${npm_package_config_local_port} dockerfile",
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
