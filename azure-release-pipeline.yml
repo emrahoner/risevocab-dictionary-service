@@ -7,8 +7,15 @@ variables:
 resources:
   containers:
   - container: ServiceContainer
-    image: risevocab/dictionaryservice:latest
-    ports: 80:4000
+    type: ACR
+    azureSubscription: $(EmonsProjects.ContainerRegistryConnection)
+    resourceGroup: $(EmonsProjects.ContainerRegistryResourceGroup)
+    registry: $(EmonsProjects.ContainerRegistry)
+    repository: risevocab/dictionaryservice:latest
+    trigger:
+      tags:
+        include:
+        - latest
 
 trigger: none
 
