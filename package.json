@@ -3,7 +3,11 @@
   "version": "0.0.0",
   "description": "",
   "main": "index.js",
+  "config": {
+    "local_port": 9002
+  },
   "scripts": {
+    "build:publish:docker": "sh ./build-publish-docker.sh ${npm_package_name} ${npm_package_config_local_port}",
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
