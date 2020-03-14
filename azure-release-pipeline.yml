@@ -6,7 +6,9 @@ variables:
 
 resources:
   containers:
-  - container:
+  - container: ServiceContainer
+    image: risevocab/dictionaryservice:latest
+    ports: 80:4000
 
 trigger: none
 
@@ -17,10 +19,11 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-  - task: AzureWebAppContainer@1
-    displayName: 'Azure Web App on Container Deploy'
-    inputs:
-      azureSubscription: RiseVocab Dev Resource Manager
-      appName: risevocab-dev-dictionary-service
-      containers: emonsprojects.azurecr.io/risevocab/dictionaryservice:latest'
-      # appSettings: '-DOCKER_REGISTRY_SERVER_URL $(EmonsProjects.ContainerRegistryUrl) -DOCKER_REGISTRY_SERVER_USERNAME $(EmonsProjects.ContainerRegistryUsername) -DOCKER_REGISTRY_SERVER_PASSWORD $(registryPassword) -WEBSITES_PORT 80:4000'
+- checkout: none
+- task: AzureWebAppContainer@1
+  displayName: 'Azure Web App on Container Deploy'
+  inputs:
+    azureSubscription: RiseVocab Dev Resource Manager
+    appName: risevocab-dev-dictionary-service
+    containers: emonsprojects.azurecr.io/risevocab/dictionaryservice:latest'
+    # appSettings: '-DOCKER_REGISTRY_SERVER_URL $(EmonsProjects.ContainerRegistryUrl) -DOCKER_REGISTRY_SERVER_USERNAME $(EmonsProjects.ContainerRegistryUsername) -DOCKER_REGISTRY_SERVER_PASSWORD $(registryPassword) -WEBSITES_PORT 80:4000'
