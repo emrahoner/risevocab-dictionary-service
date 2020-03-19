@@ -7,7 +7,7 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Build and Publish Docker",
+            "name": "Build & Run Docker",
             "runtimeExecutable": "npm",
             "runtimeArgs": [
                 "run",
