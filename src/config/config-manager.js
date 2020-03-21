@@ -45,7 +45,7 @@ function setConfigValueToConfigObject (config, objectPath, value) {
 function getConfigsFromEnvVar (options) {
     const configs = {}
     const namespace = options.namespace ? convertObjectPathStringToEnvVar(options.namespace) : undefined
-    const objectPaths = Object.keys(process.env).map(x => ({ key: x, path: convertEnvVarToObjectPathArray(namespace, x)})).filter(x => x.path)
+    const objectPaths = Object.keys(process.env).map(x => ({ key: x, path: convertEnvVarToObjectPathArray(namespace, x.toUpperCase())})).filter(x => x.path)
     for (var objectPath of objectPaths) {
         setConfigValueToConfigObject(configs, objectPath.path, process.env[objectPath.key])
     }
