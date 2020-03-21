@@ -8,7 +8,8 @@
   },
   "scripts": {
     "build:run:docker": "sh ./build-run-docker.sh ${npm_package_name} ${npm_package_config_local_port} dockerfile",
-    "start": "export NODE_ENV=local && nodemon index.js",
+    "local": "export NODE_ENV=local && nodemon index.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
