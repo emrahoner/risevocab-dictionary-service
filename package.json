@@ -8,7 +8,7 @@
   },
   "scripts": {
     "build:run:docker": "sh ./build-run-docker.sh ${npm_package_name} ${npm_package_config_local_port} dockerfile",
-    "start": "node index.js",
+    "start": "export NODE_ENV=local && nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -24,6 +24,10 @@
   "dependencies": {
     "apollo-server": "^2.11.0",
     "graphql": "^14.6.0",
-    "lodash": "^4.17.15"
+    "lodash": "^4.17.15",
+    "mongoose": "^5.9.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
   }
 }
