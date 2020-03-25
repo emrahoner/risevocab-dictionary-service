@@ -13,6 +13,15 @@
                 "run",
                 "build:run:docker"
             ]
+        },
+        {
+            "type": "node",
+            "request": "attach",
+            "name": "Debug Process",
+            "processId": "${command:PickProcess}",
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
         }
     ]
 }

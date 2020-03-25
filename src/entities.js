@@ -5,21 +5,33 @@ const Word = mongoose.model(
     new mongoose.Schema({
         _id: String,
         word: String,
-        pronunciation: [{
-            accent: String,
-            url: String
-        }],
-        relatedWords: [String],
-        wordTypes: [{
-            wordType: String,
-            pronunciation: [{
-                accent: String,
-                url: String
-            }],
-            definitions: [{
-                definition: String,
-                sentences: [String]
-            }]
+        sources: [{
+            _id: String,
+            metadata: {
+                source: String,
+                version: String,
+                createdDate: Date,
+                modifiedDate: Date
+            },
+            entry: {
+                word: String,
+                pronunciation: [{
+                    accent: String,
+                    url: String
+                }],
+                relatedWords: [String],
+                wordTypes: [{
+                    wordType: String,
+                    pronunciation: [{
+                        accent: String,
+                        url: String
+                    }],
+                    definitions: [{
+                        definition: String,
+                        sentences: [String]
+                    }]
+                }]
+            }
         }]
     })
 )
