@@ -16,16 +16,20 @@ pool:
   name: Azure Pipelines
   vmImage: ubuntu-latest
 
-steps:
-- task: AzureRmWebAppDeployment@4
-  displayName: Deploy Azure App Service
-  inputs:
-    azureSubscription: $(RiseVocab.AzureConnection)
-    appType: webAppContainer
-    WebAppName: $(RiseVocab.AppServiceName)
-    DockerNamespace: $(RiseVocab.ContainerRegistryUrl)
-    DockerRepository: $(RiseVocab.ProjectName)/$(RiseVocab.AppName)
-    DockerImageTag: latest
-    AppSettings: |
-     -RiseVocab.Database.ConnectionString $(RiseVocab.Database.ConnectionString) 
-     -RiseVocab.Port 80
+jobs:
+- deployment:
+  displayName: Deploy App Service
+  environment: $(RiseVocab.Environment)
+  strategy:
+    runOnce:
+      deploy:
+        steps:
+        - task: AzureWebAppContainer@1
+          displayName: Deploy Azure Web App on Container
+          inputs:
+            appName: $(RiseVocab.AppServiceName)
+            azureSubscription: $(RiseVocab.AzureConnection)
+            imageName: ContainerImage
+            appSettings: |
+             -RiseVocab.Database.ConnectionString $(RiseVocab.Database.ConnectionString) 
+             -RiseVocab.Port 80
