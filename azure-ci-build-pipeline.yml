@@ -1,0 +1,31 @@
+variables:
+  - group: RiseVocab.Common.Configurations
+  - group: RiseVocab.Dev.Configurations
+  - group: RiseVocab.DictionaryService.Configurations
+
+resources:
+  containers:
+  - container: ContainerImage
+    image: code2learn.azurecr.io/risevocab/dictionary-service:latest
+
+trigger: none
+
+pr: none
+
+pool:
+  name: Azure Pipelines
+  vmImage: ubuntu-latest
+
+steps:
+- task: AzureRmWebAppDeployment@4
+  displayName: Deploy Azure App Service
+  inputs:
+    azureSubscription: $(RiseVocab.AzureConnection)
+    appType: webAppContainer
+    WebAppName: $(RiseVocab.AppServiceName)
+    DockerNamespace: $(RiseVocab.ContainerRegistryUrl)
+    DockerRepository: $(RiseVocab.ProjectName)/$(RiseVocab.AppName)
+    DockerImageTag: latest
+    AppSettings: |
+     -RiseVocab.Database.ConnectionString $(RiseVocab.Database.ConnectionString) 
+     -RiseVocab.Port 80
